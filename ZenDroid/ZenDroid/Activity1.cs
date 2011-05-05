@@ -2,6 +2,7 @@
 using Android.Widget;
 using Android.OS;
 
+
 namespace ZenDroid
 {
     [Activity(Label = "ZenDroid", MainLauncher = true, Icon = "@drawable/icon")]
