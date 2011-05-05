@@ -12,7 +12,7 @@ namespace AgileZen.Lib
 	/// </summary>
     public abstract class RestService<T> where T : class
     {
-        private string _baseUrl = "https://agilezen.com/api/v1/projects?apikey=";
+        private const string _baseUrl = "https://agilezen.com/api/v1/projects?apikey=";
 
 		public abstract IEnumerable<T> ParseJson(XmlReader jsonReader);
         protected void Get(string resource, Action<Result<IEnumerable<T>>> callback)

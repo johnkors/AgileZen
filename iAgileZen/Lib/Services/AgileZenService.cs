@@ -17,16 +17,15 @@ namespace AgileZen.Lib
 		{
 			
 			var xml = XDocument.Load(jsonReader);
-			var agileZenProjects = 	from c in xml.Elements("root")
-							   		from d in c.Elements("items")
-									from e in d.Elements("item")
-							 		select new AgileZenProject()
-										{
-											Name = e.Element("name").Value,	
-											Id = e.Element("id").Value,
-											Description = e.Element("description").Value
-										
-										};	
+		    var agileZenProjects = from c in xml.Elements("root")
+		                           from d in c.Elements("items")
+		                           from e in d.Elements("item")
+		                           select new AgileZenProject()
+		                           {
+		                               Name = e.Element("name").Value,
+		                               Id = e.Element("id").Value,
+		                               Description = e.Element("description").Value
+		                           };
 			return agileZenProjects;
 
 		}
