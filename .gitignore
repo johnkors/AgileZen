@@ -8,3 +8,19 @@ bin
 *.pidb
 *.suo
 *.userprefs
+
+#.net rules
+_ReSharper*
+
+bin
+
+obj
+*.csproj.user
+
+*.resharper.user
+
+*.resharper
+
+*.suo
+
+*.cache
