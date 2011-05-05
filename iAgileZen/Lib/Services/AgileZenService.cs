@@ -3,31 +3,17 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
+using Lib.Services;
 
 namespace AgileZen.Lib
 {
-	public class AgileZenService : RestService<AgileZenProject>
+	public class AgileZenService : RestService
 	{
-		public void GetProjects(string apiKey, Action<Result<IEnumerable<AgileZenProject>>> callback)
-		{ 
-			 Get(apiKey, callback);
-		}
-		
-		public override IEnumerable<AgileZenProject> ParseJson (XmlReader jsonReader)
-		{
-			
-			var xml = XDocument.Load(jsonReader);
-		    var agileZenProjects = from c in xml.Elements("root")
-		                           from d in c.Elements("items")
-		                           from e in d.Elements("item")
-		                           select new AgileZenProject()
-		                           {
-		                               Name = e.Element("name").Value,
-		                               Id = e.Element("id").Value,
-		                               Description = e.Element("description").Value
-		                           };
-			return agileZenProjects;
+	    public AgileZenService(string apiKey) : base(apiKey) {}
 
+	    public void GetProjects(Action<Result<IEnumerable<AgileZenProject>>> callback)
+		{ 
+			 Get<AgileZenProject>("", callback, new AgileZenProjectParser());
 		}
 	}
 }
