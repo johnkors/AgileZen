@@ -4,7 +4,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 
-namespace Lib
+namespace AgileZen.Lib
 {
 	public class AgileZenService : RestService<AgileZenProject>
 	{

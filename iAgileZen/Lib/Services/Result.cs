@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lib
+namespace AgileZen.Lib
 {
 	
 	/// <summary>

@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using System.Runtime.Serialization.Json;
 using System.ServiceModel.Web;
 
-namespace Lib
+namespace AgileZen.Lib
 {
 	/// <summary>
 	/// Rest service (stjålet villt fra  Jonas Follesøs Flytider-kodebase 

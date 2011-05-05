@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch", "Touch\Touch.csproj", "{48DDED47-4B48-4283-9AD8-7DA932E54B43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileZen.Lib", "Lib\AgileZen.Lib.csproj", "{AB63CB09-112C-4AF4-885A-04606457A5E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -19,6 +21,14 @@ Global
 		{48DDED47-4B48-4283-9AD8-7DA932E54B43}.Release|iPhone.Build.0 = Release|iPhone
 		{48DDED47-4B48-4283-9AD8-7DA932E54B43}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{48DDED47-4B48-4283-9AD8-7DA932E54B43}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Debug|iPhone.Build.0 = Debug|iPhone
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Release|iPhone.ActiveCfg = Release|iPhone
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Release|iPhone.Build.0 = Release|iPhone
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Touch\Touch.csproj
