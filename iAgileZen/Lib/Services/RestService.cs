@@ -1,12 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Net;
-using System.Text;
 using System.Collections.Generic;
 using System.Xml;
-using System.Xml.Linq;
 using System.Runtime.Serialization.Json;
-using System.ServiceModel.Web;
 
 namespace AgileZen.Lib
 {
