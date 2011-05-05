@@ -9,15 +9,36 @@ namespace Touch
 {
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		private UINavigationController _navigationController;
+		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			var navigationController = new UINavigationController();
-			navigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-			
-			window.AddSubview(navigationController.View); // hver kontroller har en kobling mot ett view via property "View"
+			_navigationController = new MyNavController();
+			window.AddSubview(_navigationController.View); 
 			window.MakeKeyAndVisible ();
-
+	
 			return true;
 		}
 	}
+	
+	public class MyNavController : UINavigationController
+	{
+		private  UITableViewController _tableViewController;
+		
+		public MyNavController()
+		{
+			
+		}
+		
+		public MyNavController(UIViewController rootViewController): base(rootViewController){}
+		
+		public override void ViewDidLoad()
+		{	
+			NavigationBar.BarStyle = UIBarStyle.Black;
+			_tableViewController = new MyTableViewController();
+			PushViewController(_tableViewController,false);
+		}
+	}
+	
+
 }
