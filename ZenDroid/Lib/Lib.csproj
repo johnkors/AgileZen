@@ -33,6 +33,9 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json.MonoDroid">
+      <HintPath>..\..\Libs\Newtonsoft.Json.MonoDroid.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -56,6 +59,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AgileZenProjectParser.cs" />
     <Compile Include="Services\IParser.cs" />
+    <Compile Include="Services\ISerializer.cs" />
+    <Compile Include="Services\JsonSerializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

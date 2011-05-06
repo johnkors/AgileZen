@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Linq;
-using System.Linq;
-using Lib.Services;
 
 namespace AgileZen.Lib
 {
@@ -11,9 +6,9 @@ namespace AgileZen.Lib
 	{
 	    public AgileZenService(string apiKey) : base(apiKey) {}
 
-	    public void GetProjects(Action<Result<IEnumerable<AgileZenProject>>> callback)
-		{ 
-			 Get<AgileZenProject>("", callback, new AgileZenProjectParser());
+	    public void GetProjects(Action<Result<AgileZenProjectResult>> callback)
+		{
+            Get<AgileZenProjectResult>("", callback);
 		}
 	}
 }
