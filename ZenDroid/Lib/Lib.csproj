@@ -44,11 +44,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenPhase.cs">
+      <Link>Models\AgileZenPhase.cs</Link>
+    </Compile>
     <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenProject.cs">
       <Link>Models\AgileZenProject.cs</Link>
     </Compile>
+    <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenProjectResult.cs">
+      <Link>Models\AgileZenProjectResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenStory.cs">
+      <Link>Models\AgileZenStory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenStoryResult.cs">
+      <Link>Models\AgileZenStoryResult.cs</Link>
+    </Compile>
+    <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenUser.cs">
+      <Link>Models\AgileZenUser.cs</Link>
+    </Compile>
     <Compile Include="..\..\iAgileZen\Lib\Services\AgileZenService.cs">
       <Link>Services\AgileZenService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\iAgileZen\Lib\Services\ISerializer.cs">
+      <Link>Services\ISerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\iAgileZen\Lib\Services\JsonSerializer.cs">
+      <Link>Services\JsonSerializer.cs</Link>
     </Compile>
     <Compile Include="..\..\iAgileZen\Lib\Services\RestService.cs">
       <Link>Services\RestService.cs</Link>
@@ -56,16 +77,7 @@
     <Compile Include="..\..\iAgileZen\Lib\Services\Result.cs">
       <Link>Services\Result.cs</Link>
     </Compile>
-    <Compile Include="Models\AgileZenProjectResult.cs" />
-    <Compile Include="Models\AgileZenStory.cs" />
-    <Compile Include="Models\AgileZenStoryResult.cs" />
-    <Compile Include="Models\AgileZenUser.cs" />
-    <Compile Include="Models\AgileZenPhase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AgileZenProjectParser.cs" />
-    <Compile Include="Services\IParser.cs" />
-    <Compile Include="Services\ISerializer.cs" />
-    <Compile Include="Services\JsonSerializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
