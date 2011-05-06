@@ -56,6 +56,11 @@
     <Compile Include="..\..\iAgileZen\Lib\Services\Result.cs">
       <Link>Services\Result.cs</Link>
     </Compile>
+    <Compile Include="Models\AgileZenProjectResult.cs" />
+    <Compile Include="Models\AgileZenStory.cs" />
+    <Compile Include="Models\AgileZenStoryResult.cs" />
+    <Compile Include="Models\AgileZenUser.cs" />
+    <Compile Include="Models\AgileZenPhase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AgileZenProjectParser.cs" />
     <Compile Include="Services\IParser.cs" />

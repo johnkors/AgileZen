@@ -10,6 +10,11 @@ namespace AgileZen.Lib
 		{
             Get<AgileZenProjectResult>("", callback);
 		}
+
+        public void GetStories(string projectId, Action<Result<AgileZenStoryResult>> callback)
+        {
+            Get<AgileZenStoryResult>(string.Format("/{0}/stories", projectId), callback);
+        }
 	}
 }
 
