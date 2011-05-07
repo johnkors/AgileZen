@@ -20,6 +20,14 @@ namespace ZenDroid
             // Get our button from the layout resource,
             // and attach an event to it
             Button button = FindViewById<Button>(Resource.Id.MyButton);
+            var service = new AgileZen.Lib.AgileZenService("91470a1b1c794efbbe8db073f252cd4b");
+            service.GetStories("18031", (result) =>
+                                {
+                                    this.RunOnUiThread(() =>
+                                                       {
+                                                           button.Text = result.Value.Items.ToString();
+                                                       });
+                                });
 
             button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
         }
