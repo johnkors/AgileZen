@@ -4,16 +4,23 @@ namespace AgileZen.Lib
 {
 	public class AgileZenService : RestService
 	{
-	    public AgileZenService(string apiKey) : base(apiKey) {}
+        private const string _baseUrl = "https://agilezen.com/api/v1/projects";
+	    private string apiKey;
+	    public AgileZenService(string apiKey)
+	    {
+	        this.apiKey = apiKey;
+	    }
 
 	    public void GetProjects(Action<Result<AgileZenProjectResult>> callback)
-		{
-            Get<AgileZenProjectResult>("", callback);
+	    {
+	        var url = string.Format("{0}?apikey={1}", _baseUrl, apiKey);
+            Get(url, callback);
 		}
 
         public void GetStories(string projectId, Action<Result<AgileZenStoryResult>> callback)
         {
-            Get<AgileZenStoryResult>(string.Format("/{0}/stories", projectId), callback);
+            var url = string.Format("{0}/{2}/stories?apikey={1}", _baseUrl, apiKey, projectId);
+            Get(string.Format("/{0}/stories", projectId), callback);
         }
 	}
 }

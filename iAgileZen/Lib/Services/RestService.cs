@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.IO;
 using System.Net;
-using System.Collections.Generic;
-using System.Xml;
-using System.Runtime.Serialization.Json;
 using Lib.Services;
-using Newtonsoft.Json;
 using JsonSerializer = Lib.Services.JsonSerializer;
 
 namespace AgileZen.Lib
@@ -15,21 +9,22 @@ namespace AgileZen.Lib
 	/// Rest service (stjålet villt fra  Jonas Follesøs Flytider-kodebase 
 	/// https://github.com/follesoe/FlightsNorway.git
 	/// </summary>
-    public abstract class RestService
+    public class RestService
     {
-        private const string _baseUrl = "https://agilezen.com/api/v1/projects";
-	    private string apiKey;
 	    private ISerializer serializer;
 
-	    protected RestService(string apiKey)
+	    public RestService()
         {
-            this.apiKey = apiKey;
 	        serializer = new JsonSerializer();
         }
-
-	    protected void Get<T>(string path, Action<Result<T>> callback)
+        public RestService(ISerializer serializer)
         {
-			var webRequest = (HttpWebRequest)WebRequest.Create(_baseUrl + path + "?apikey=" + apiKey);
+            this.serializer = serializer;
+        }
+
+        public void Get<T>(string url, Action<Result<T>> callback)
+        {
+			var webRequest = (HttpWebRequest)WebRequest.Create(url);
 	        webRequest.Accept = "application/json";
             webRequest.BeginGetResponse(responseResult =>
             {
