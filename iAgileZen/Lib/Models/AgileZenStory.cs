@@ -8,5 +8,10 @@ namespace AgileZen.Lib
         public string Status { get; set; }
         public AgileZenPhase Phase { get; set; }
         public AgileZenUser Owner { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }
