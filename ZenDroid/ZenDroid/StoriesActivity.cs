@@ -21,7 +21,7 @@ namespace ZenDroid
             var service = new AgileZenService("91470a1b1c794efbbe8db073f252cd4b");
             service.GetStories(projectId, (a) => RunOnUiThread(() =>
             {
-                foreach (AgileZenStory project in a.Value)
+                foreach (AgileZenStory project in a.Value.Items)
                 {
                     stories.Add(project);
                 }
