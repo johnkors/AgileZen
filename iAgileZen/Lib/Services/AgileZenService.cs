@@ -1,34 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Linq;
-using System.Linq;
 
 namespace AgileZen.Lib
 {
-	public class AgileZenService : RestService<AgileZenProject>
+	public class AgileZenService : RestService
 	{
-		public void GetProjects(string apiKey, Action<Result<IEnumerable<AgileZenProject>>> callback)
-		{ 
-			 Get(apiKey, callback);
-		}
-		
-		public override IEnumerable<AgileZenProject> ParseJson (XmlReader jsonReader)
-		{
-			
-			var xml = XDocument.Load(jsonReader);
-		    var agileZenProjects = from c in xml.Elements("root")
-		                           from d in c.Elements("items")
-		                           from e in d.Elements("item")
-		                           select new AgileZenProject()
-		                           {
-		                               Name = e.Element("name").Value,
-		                               Id = e.Element("id").Value,
-		                               Description = e.Element("description").Value
-		                           };
-			return agileZenProjects;
+        private const string _baseUrl = "https://agilezen.com/api/v1/projects";
+	    private string apiKey;
+	    public AgileZenService(string apiKey)
+	    {
+	        this.apiKey = apiKey;
+	    }
 
+	    public void GetProjects(Action<Result<AgileZenProjectResult>> callback)
+	    {
+	        var url = string.Format("{0}?apikey={1}", _baseUrl, apiKey);
+            Get(url, callback);
 		}
+
+        public void GetStories(string projectId, Action<Result<AgileZenStoryResult>> callback)
+        {
+            var url = string.Format("{0}/{2}/stories?apikey={1}", _baseUrl, apiKey, projectId);
+            Get(string.Format("/{0}/stories", projectId), callback);
+        }
 	}
 }
 

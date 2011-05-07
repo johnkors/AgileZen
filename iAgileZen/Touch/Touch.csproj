@@ -89,9 +89,16 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="MyTableViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Lib\AgileZen.Lib.csproj">
+      <Project>{AB63CB09-112C-4AF4-885A-04606457A5E9}</Project>
+      <Name>AgileZen.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

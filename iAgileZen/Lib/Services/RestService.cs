@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Net;
-using System.Collections.Generic;
-using System.Xml;
-using System.Runtime.Serialization.Json;
+using Lib.Services;
+using JsonSerializer = Lib.Services.JsonSerializer;
 
 namespace AgileZen.Lib
 {
@@ -10,14 +9,23 @@ namespace AgileZen.Lib
 	/// Rest service (stjålet villt fra  Jonas Follesøs Flytider-kodebase 
 	/// https://github.com/follesoe/FlightsNorway.git
 	/// </summary>
-    public abstract class RestService<T> where T : class
+    public class RestService
     {
-        private const string _baseUrl = "https://agilezen.com/api/v1/projects?apikey=";
+	    private ISerializer serializer;
 
-		public abstract IEnumerable<T> ParseJson(XmlReader jsonReader);
-        protected void Get(string resource, Action<Result<IEnumerable<T>>> callback)
+	    public RestService()
         {
-			var webRequest = (HttpWebRequest)WebRequest.Create(_baseUrl+resource);
+	        serializer = new JsonSerializer();
+        }
+        public RestService(ISerializer serializer)
+        {
+            this.serializer = serializer;
+        }
+
+        public void Get<T>(string url, Action<Result<T>> callback)
+        {
+			var webRequest = (HttpWebRequest)WebRequest.Create(url);
+	        webRequest.Accept = "application/json";
             webRequest.BeginGetResponse(responseResult =>
             {
                 try
@@ -25,29 +33,17 @@ namespace AgileZen.Lib
                     var response = webRequest.EndGetResponse(responseResult);
                     if (response != null)
                     {
-                        var result = ParseResultJson(response);
+                        var result = serializer.Deserialize<T>(response.GetResponseStream());
                         response.Close();
-                        callback(new Result<IEnumerable<T>>(result));
+                        callback(new Result<T>(result));
                     }
                 }
                 catch (Exception ex)
                 {
-                    callback(new Result<IEnumerable<T>>(ex));
+                    callback(new Result<T>(ex));
                 }
      
             }, webRequest);
 		}
-		
-		private IEnumerable<T> ParseResultJson(WebResponse response)
-		{
-			var responseStream = response.GetResponseStream();
-			XmlDictionaryReaderQuotas xmlDictionaryReaderQoutas = new XmlDictionaryReaderQuotas();
-            using (var jsonReader = JsonReaderWriterFactory.CreateJsonReader(responseStream,xmlDictionaryReaderQoutas))
-            {
-				return ParseJson(jsonReader);
-            }      
-		}
-		
-	
     }
 }
