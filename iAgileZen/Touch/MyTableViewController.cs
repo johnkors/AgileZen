@@ -11,24 +11,25 @@ namespace Touch
 	public class MyTableViewController : UITableViewController {
 		static NSString kCellIdentifier = new NSString ("myTVC");
 		private AgileZenService _service;
+		private string agileZenApiKey = "40092c42cfd64a309df016dc8afcf826";
 		
 		public IEnumerable<AgileZenProject> AgileZenProjects;
 		
 		public MyTableViewController()
 		{
-			_service = new AgileZenService();
+			_service = new AgileZenService(agileZenApiKey);
 		}
 		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad();
 			Title = "AgileZen";
-			var agileZenApiKey = "40092c42cfd64a309df016dc8afcf826";
-			 _service.GetProjects(agileZenApiKey, OnProjectsFetched);
+			
+			 _service.GetProjects(OnProjectsFetched);
 		}
 
 		
-		public void OnProjectsFetched (Result<IEnumerable<AgileZenProject>> result)
+		public void OnProjectsFetched (Result<AgileZenProjectResult> result)
 		{
 			InvokeOnMainThread 
 			(
@@ -36,7 +37,7 @@ namespace Touch
 				{
 					if(result.Error == null)
 					{
-						AgileZenProjects = result.Value.ToList();
+						AgileZenProjects = result.Value.Items;
 					}
 					else
 					{

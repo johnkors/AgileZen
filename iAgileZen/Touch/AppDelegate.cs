@@ -21,24 +21,7 @@ namespace Touch
 		}
 	}
 	
-	public class MyNavController : UINavigationController
-	{
-		private  UITableViewController _tableViewController;
-		
-		public MyNavController()
-		{
-			
-		}
-		
-		public MyNavController(UIViewController rootViewController): base(rootViewController){}
-		
-		public override void ViewDidLoad()
-		{	
-			NavigationBar.BarStyle = UIBarStyle.Black;
-			_tableViewController = new MyTableViewController();
-			PushViewController(_tableViewController,false);
-		}
-	}
+
 	
 
 }

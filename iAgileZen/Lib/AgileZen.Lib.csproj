@@ -81,6 +81,10 @@
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Newtonsoft.Json.MonoTouch, Version=4.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Newtonsoft.Json.MonoTouch.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -88,6 +92,13 @@
     <Compile Include="Services\Result.cs" />
     <Compile Include="Services\AgileZenService.cs" />
     <Compile Include="Models\AgileZenProject.cs" />
+    <Compile Include="Models\AgileZenPhase.cs" />
+    <Compile Include="Models\AgileZenProjectResult.cs" />
+    <Compile Include="Models\AgileZenStory.cs" />
+    <Compile Include="Models\AgileZenStoryResult.cs" />
+    <Compile Include="Models\AgileZenUser.cs" />
+    <Compile Include="Services\ISerializer.cs" />
+    <Compile Include="Services\JsonSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
