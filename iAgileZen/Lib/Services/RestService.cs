@@ -17,6 +17,7 @@ namespace AgileZen.Lib
         {
 	        serializer = new JsonSerializer();
         }
+		
         public RestService(ISerializer serializer)
         {
             this.serializer = serializer;
@@ -47,3 +48,4 @@ namespace AgileZen.Lib
 		}
     }
 }
+
