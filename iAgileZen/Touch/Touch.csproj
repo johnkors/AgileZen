@@ -91,6 +91,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="MyTableViewController.cs" />
     <Compile Include="MyNavController.cs" />
+    <Compile Include="StoriesTableViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />

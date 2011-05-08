@@ -11,13 +11,11 @@ namespace Touch
 	public class MyTableViewController : UITableViewController {
 		static NSString kCellIdentifier = new NSString ("myTVC");
 		private AgileZenService _service;
-		private string agileZenApiKey = "40092c42cfd64a309df016dc8afcf826";
-		
 		public IEnumerable<AgileZenProject> AgileZenProjects;
 		
 		public MyTableViewController()
 		{
-			_service = new AgileZenService(agileZenApiKey);
+			_service = new AgileZenService(AppDelegate.APIKEY);
 		}
 		
 		public override void ViewDidLoad ()
@@ -98,14 +96,15 @@ namespace Touch
 				var currentProject = tvc.AgileZenProjects.ElementAt(indexPath.Row);
 				Console.WriteLine(currentProject.Name);
 				
-				var detailsViewController = new UIViewController();
+//				var detailsViewController = new UIViewController();
+//				
+//				AddLabel(detailsViewController,10,"Beskrivelse");
+//				AddLabel(detailsViewController,60, currentProject.Description);
+//				AddLabel(detailsViewController,110,"Id");
+//				AddLabel(detailsViewController,160, currentProject.Id);
+				StoriesTableViewController storiesTvc = new StoriesTableViewController(currentProject.Id);
 				
-				AddLabel(detailsViewController,10,"Beskrivelse");
-				AddLabel(detailsViewController,60, currentProject.Description);
-				AddLabel(detailsViewController,110,"Id");
-				AddLabel(detailsViewController,160, currentProject.Id);
-				
-				tvc.NavigationController.PushViewController(detailsViewController, true);
+				tvc.NavigationController.PushViewController(storiesTvc, true);
 			}
 			
 			private void AddLabel(UIViewController vc, int ypos, string text)
