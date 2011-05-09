@@ -8,23 +8,19 @@ using AgileZen.Lib;
 
 namespace Touch
 {
-	public class MyTableViewController : UITableViewController {
+	public class ProjectTableViewController : UITableViewController {
 		static NSString kCellIdentifier = new NSString ("myTVC");
 		private AgileZenService _service;
-		private string agileZenApiKey = "40092c42cfd64a309df016dc8afcf826";
-		
 		public IEnumerable<AgileZenProject> AgileZenProjects;
 		
-		public MyTableViewController()
+		public ProjectTableViewController()
 		{
-			_service = new AgileZenService(agileZenApiKey);
+			_service = new AgileZenService(AppDelegate.APIKEY);
 		}
 		
 		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad();
-			Title = "AgileZen";
-			
+			Title = "Prosjekter";
 			 _service.GetProjects(OnProjectsFetched);
 		}
 
@@ -56,9 +52,9 @@ namespace Touch
 		// The data source for our TableView
 		//
 		class DataSource : UITableViewDataSource {
-			MyTableViewController tvc;
+			ProjectTableViewController tvc;
 			
-			public DataSource (MyTableViewController tvc)
+			public DataSource (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}
@@ -86,9 +82,9 @@ namespace Touch
 		// This class receives notifications that happen on the UITableView
 		//
 		class TableDelegate : UITableViewDelegate {
-			MyTableViewController tvc;
+			ProjectTableViewController tvc;
 	
-			public TableDelegate (MyTableViewController tvc)
+			public TableDelegate (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}
@@ -98,14 +94,15 @@ namespace Touch
 				var currentProject = tvc.AgileZenProjects.ElementAt(indexPath.Row);
 				Console.WriteLine(currentProject.Name);
 				
-				var detailsViewController = new UIViewController();
+//				var detailsViewController = new UIViewController();
+//				
+//				AddLabel(detailsViewController,10,"Beskrivelse");
+//				AddLabel(detailsViewController,60, currentProject.Description);
+//				AddLabel(detailsViewController,110,"Id");
+//				AddLabel(detailsViewController,160, currentProject.Id);
+				StoriesTableViewController storiesTvc = new StoriesTableViewController(currentProject.Id);
 				
-				AddLabel(detailsViewController,10,"Beskrivelse");
-				AddLabel(detailsViewController,60, currentProject.Description);
-				AddLabel(detailsViewController,110,"Id");
-				AddLabel(detailsViewController,160, currentProject.Id);
-				
-				tvc.NavigationController.PushViewController(detailsViewController, true);
+				tvc.NavigationController.PushViewController(storiesTvc, true);
 			}
 			
 			private void AddLabel(UIViewController vc, int ypos, string text)

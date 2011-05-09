@@ -9,6 +9,8 @@ namespace Touch
 {
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		public static string APIKEY = "40092c42cfd64a309df016dc8afcf826";
+		
 		private UINavigationController _navigationController;
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
@@ -21,24 +23,7 @@ namespace Touch
 		}
 	}
 	
-	public class MyNavController : UINavigationController
-	{
-		private  UITableViewController _tableViewController;
-		
-		public MyNavController()
-		{
-			
-		}
-		
-		public MyNavController(UIViewController rootViewController): base(rootViewController){}
-		
-		public override void ViewDidLoad()
-		{	
-			NavigationBar.BarStyle = UIBarStyle.Black;
-			_tableViewController = new MyTableViewController();
-			PushViewController(_tableViewController,false);
-		}
-	}
+
 	
 
 }
