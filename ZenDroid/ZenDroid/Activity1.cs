@@ -19,7 +19,7 @@ namespace ZenDroid
             projects = new ObservableCollection<AgileZenProject>();
             ListAdapter = new Adapters.ObservableAdapter<AgileZenProject>(this, projects);
 
-            var service = new AgileZenService("91470a1b1c794efbbe8db073f252cd4b");
+            var service = new AgileZenService("a77ef979c1da4632a81b2ecfbaeac696");
             service.GetProjects((a) => RunOnUiThread(() =>
                 {
                     foreach (AgileZenProject project in a.Value.Items)
