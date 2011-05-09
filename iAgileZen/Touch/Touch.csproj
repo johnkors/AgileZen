@@ -89,8 +89,9 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MyTableViewController.cs" />
     <Compile Include="MyNavController.cs" />
+    <Compile Include="StoriesTableViewController.cs" />
+    <Compile Include="ProjectTableViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -101,5 +102,8 @@
       <Project>{AB63CB09-112C-4AF4-885A-04606457A5E9}</Project>
       <Name>AgileZen.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.png" />
   </ItemGroup>
 </Project>
