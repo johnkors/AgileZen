@@ -92,16 +92,7 @@ namespace Touch
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
 				var currentProject = tvc.AgileZenProjects.ElementAt(indexPath.Row);
-				Console.WriteLine(currentProject.Name);
-				
-//				var detailsViewController = new UIViewController();
-//				
-//				AddLabel(detailsViewController,10,"Beskrivelse");
-//				AddLabel(detailsViewController,60, currentProject.Description);
-//				AddLabel(detailsViewController,110,"Id");
-//				AddLabel(detailsViewController,160, currentProject.Id);
 				StoriesTableViewController storiesTvc = new StoriesTableViewController(currentProject.Id);
-				
 				tvc.NavigationController.PushViewController(storiesTvc, true);
 			}
 			
