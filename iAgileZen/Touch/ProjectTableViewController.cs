@@ -8,21 +8,19 @@ using AgileZen.Lib;
 
 namespace Touch
 {
-	public class MyTableViewController : UITableViewController {
+	public class ProjectTableViewController : UITableViewController {
 		static NSString kCellIdentifier = new NSString ("myTVC");
 		private AgileZenService _service;
 		public IEnumerable<AgileZenProject> AgileZenProjects;
 		
-		public MyTableViewController()
+		public ProjectTableViewController()
 		{
 			_service = new AgileZenService(AppDelegate.APIKEY);
 		}
 		
 		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad();
-			Title = "AgileZen";
-			
+			Title = "Prosjekter";
 			 _service.GetProjects(OnProjectsFetched);
 		}
 
@@ -54,9 +52,9 @@ namespace Touch
 		// The data source for our TableView
 		//
 		class DataSource : UITableViewDataSource {
-			MyTableViewController tvc;
+			ProjectTableViewController tvc;
 			
-			public DataSource (MyTableViewController tvc)
+			public DataSource (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}
@@ -84,9 +82,9 @@ namespace Touch
 		// This class receives notifications that happen on the UITableView
 		//
 		class TableDelegate : UITableViewDelegate {
-			MyTableViewController tvc;
+			ProjectTableViewController tvc;
 	
-			public TableDelegate (MyTableViewController tvc)
+			public TableDelegate (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}
