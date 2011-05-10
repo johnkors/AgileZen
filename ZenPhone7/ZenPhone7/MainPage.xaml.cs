@@ -16,9 +16,7 @@ namespace ZenPhone7
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            var service = new AgileZen.Lib.AgileZenService("");
-            service.GetProjects((result) => Dispatcher.BeginInvoke(() =>
+            App.AgileZenService.GetProjects((result) => Dispatcher.BeginInvoke(() =>
                                                                    {
                                                                        ProjectList.ItemsSource = result.Value.Items;
                                                                    }));

@@ -25,12 +25,26 @@ namespace ZenPhone7
             base.OnNavigatedTo(e);
 
             var id = NavigationContext.QueryString["id"];
-            PageTitle.Text = NavigationContext.QueryString["name"];
+            StoryPivot.Title = NavigationContext.QueryString["name"];
 
-            var service = new AgileZen.Lib.AgileZenService("");
-            service.GetStories(id, (result) => Dispatcher.BeginInvoke(() =>
+            App.AgileZenService.GetStories(id, (result) => Dispatcher.BeginInvoke(() =>
             {
-                StoryList.ItemsSource = result.Value.Items;
+                var groups = from items in result.Value.Items
+                            group items by items.Phase.Name
+                            into groupedItems
+                            select new PivotItem
+                            {
+                                Header = groupedItems.Key,
+                                Content = new ListBox
+                                {
+                                    ItemsSource = groupedItems
+                                }
+                            };
+
+                foreach (var pivotItem in groups)
+                {
+                    StoryPivot.Items.Add(pivotItem);
+                }
             }));
         }
     }
