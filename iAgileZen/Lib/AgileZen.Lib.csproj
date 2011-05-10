@@ -104,6 +104,7 @@
     <Compile Include="Services\ISerializer.cs" />
     <Compile Include="Services\JsonSerializer.cs" />
     <Compile Include="Models\AgileZenTask.cs" />
+    <Compile Include="Models\AgileZenPhaseResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
