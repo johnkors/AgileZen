@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenPhone7", "ZenPhone7.csproj", "{F8635665-82D6-490A-879C-76F65FD30523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib", "..\Lib\Lib.csproj", "{650D2D9D-CFD9-4A19-B134-B2DC2F48D129}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8635665-82D6-490A-879C-76F65FD30523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8635665-82D6-490A-879C-76F65FD30523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8635665-82D6-490A-879C-76F65FD30523}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F8635665-82D6-490A-879C-76F65FD30523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8635665-82D6-490A-879C-76F65FD30523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8635665-82D6-490A-879C-76F65FD30523}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{650D2D9D-CFD9-4A19-B134-B2DC2F48D129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650D2D9D-CFD9-4A19-B134-B2DC2F48D129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650D2D9D-CFD9-4A19-B134-B2DC2F48D129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650D2D9D-CFD9-4A19-B134-B2DC2F48D129}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
