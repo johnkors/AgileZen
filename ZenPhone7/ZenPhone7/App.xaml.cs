@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AgileZen.Lib;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -22,6 +23,8 @@ namespace ZenPhone7
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
+
+        public static AgileZenService AgileZenService = new AgileZenService("");
 
         /// <summary>
         /// Constructor for the Application object.
