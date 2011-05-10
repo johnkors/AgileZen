@@ -1,26 +1,45 @@
 #ignore build files
+
 bin
+
 
 *.mode1v3
+
 *.pbxuser
 
+
+
 #ignore local files of VisualStudio 
+
 *.pidb
+
 *.suo
+
 *.userprefs
 
+
+
 #.net rules
+
+
 _ReSharper*
+
 
 bin
 
+
 obj
+
 *.csproj.user
+
 
 *.resharper.user
 
+
 *.resharper
 
+
 *.suo
+
 
 *.cache
