@@ -54,6 +54,9 @@
     <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenPhase.cs">
       <Link>Models\AgileZenPhase.cs</Link>
     </Compile>
+    <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenPhaseResult.cs">
+      <Link>Models\AgileZenPhaseResult.cs</Link>
+    </Compile>
     <Compile Include="..\..\iAgileZen\Lib\Models\AgileZenProject.cs">
       <Link>Models\AgileZenProject.cs</Link>
     </Compile>
