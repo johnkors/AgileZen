@@ -13,14 +13,21 @@ namespace AgileZen.Lib
 
 	    public void GetProjects(Action<Result<AgileZenProjectResult>> callback)
 	    {
-	        var url = string.Format("{0}?apikey={1}", _baseUrl, apiKey);
+	        var url = string.Format("{0}?apikey={1}&with=tasks", _baseUrl, apiKey);
             Get(url, callback);
 		}
 
         public void GetStories(string projectId, Action<Result<AgileZenStoryResult>> callback)
         {
             var url = string.Format("{0}/{2}/stories?apikey={1}", _baseUrl, apiKey, projectId);
-            Get(url, callback);        }
+            Get(url, callback);        
+        }
+
+        public void GetPhases(string projectId, Action<Result<AgileZenPhaseResult>> callback)
+        {
+            var url = string.Format("{0}/{2}/phases?apikey={1}", _baseUrl, apiKey, projectId);
+            Get(url, callback);
+        }
 	}
 }
 
