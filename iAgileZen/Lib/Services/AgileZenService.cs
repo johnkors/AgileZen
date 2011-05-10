@@ -20,7 +20,8 @@ namespace AgileZen.Lib
         public void GetStories(string projectId, Action<Result<AgileZenStoryResult>> callback)
         {
             var url = string.Format("{0}/{2}/stories?apikey={1}", _baseUrl, apiKey, projectId);
-            Get(url, callback);        }
+            Get(url, callback);        
+        }
 	}
 }
 
