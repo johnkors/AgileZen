@@ -13,7 +13,7 @@ namespace AgileZen.Lib
 
 	    public void GetProjects(Action<Result<AgileZenProjectResult>> callback)
 	    {
-	        var url = string.Format("{0}?apikey={1}", _baseUrl, apiKey);
+	        var url = string.Format("{0}?apikey={1}&with=tasks", _baseUrl, apiKey);
             Get(url, callback);
 		}
 
