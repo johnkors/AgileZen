@@ -5,12 +5,12 @@ namespace Touch
 {
 	public class MyNavController : UINavigationController
 	{	
-		private ProjectTableViewController _myTableViewController;
+		private ProjectTableViewController _projectTableViewController;
 		public override void ViewDidLoad()
 		{	
 			NavigationBar.BarStyle = UIBarStyle.Black;
-			_myTableViewController = new ProjectTableViewController();
-			PushViewController(_myTableViewController,false);
+			_projectTableViewController = new ProjectTableViewController();
+			PushViewController(_projectTableViewController,false);
 		}
 	}
 }
