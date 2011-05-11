@@ -1,0 +1,20 @@
+### AgileZen Mobile ###
+AgileZen apps for mobile devices running iOS, Android and WP7
+
+## Install requirements ##
+
+#iAgileZen
+iAgileZen is a iOS app based on the MonoTouch framework. You will need the following tools/framework to develop:
+
+A Mac running OSX Snow Leopard 10.6.6 or greater
+Mono v.2.10.1
+MonoTouch 4 (Eval version works)
+MonoDevelop v.2.6 or greater
+XCode 3.2.6 or greater
+iOS SDK 4.3 or greater
+
+#ZenDroid
+TBA
+
+#ZenPhone7
+TBA
