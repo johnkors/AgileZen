@@ -13,11 +13,14 @@ namespace Touch
 		static NSString storieskCellIdentifier = new NSString ("storiesTVC");
 		private AgileZenService _service;
 		private string _projectId;
+		private MonoObjectStore _objectStore;
 		public IEnumerable<AgileZenStory> Stories;
 		
 		public StoriesTableViewController (string projectId)
 		{
-			_service = new AgileZenService(AppDelegate.APIKEY);
+			_objectStore = new MonoObjectStore();
+			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
+			_service = new AgileZenService(userFromFile.ApiKey);
 			_projectId = projectId;
 		}
 		
@@ -32,7 +35,7 @@ namespace Touch
 		{
 			if(storyResult.Error == null)
 			{
-				Stories = storyResult.Value.Items; // from c in storyResult.Value.Items where c.Phase.Name == "Sprintbacklog" select c;;
+				Stories = storyResult.Value.Items; 
 			}
 			else
 			{
