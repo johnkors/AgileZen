@@ -46,6 +46,34 @@ namespace AgileZen.Lib
      
             }, webRequest);
 		}
+		
+		public Result<bool> IsAuthenticated (string url)
+		{
+     		var uri = new Uri(url);
+	       	var webRequest = (HttpWebRequest)WebRequest.Create(uri);
+			webRequest.Timeout = 300000; // in milliseconds
+			try
+			{
+				var response = (HttpWebResponse)webRequest.GetResponse();
+				if(response.StatusCode == HttpStatusCode.OK)
+				{
+					return new Result<bool>(true);
+				}
+				return new Result<bool>(false);
+			}
+			catch(WebException we)
+			{
+				if( we.Response != null && ((HttpWebResponse) we.Response).StatusCode == HttpStatusCode.InternalServerError) //HttpStatusCode.Unauthorized not returned on erronous API key
+				{
+					return new Result<bool>(false);
+				}
+				return new Result<bool>(we);
+			}
+			catch(Exception e)
+			{
+				return new Result<bool>(e);
+			}
+		}
     }
 }
 

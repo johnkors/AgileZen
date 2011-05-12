@@ -9,13 +9,16 @@ using AgileZen.Lib;
 namespace Touch
 {
 	public class ProjectTableViewController : UITableViewController {
-		static NSString kCellIdentifier = new NSString ("myTVC");
+		static NSString kCellIdentifier = new NSString ("projectTVC");
 		private AgileZenService _service;
+		private MonoObjectStore _objectStore;
 		public IEnumerable<AgileZenProject> AgileZenProjects;
 		
 		public ProjectTableViewController()
 		{
-			_service = new AgileZenService(AppDelegate.APIKEY);
+			_objectStore = new MonoObjectStore();
+			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
+			_service = new AgileZenService(userFromFile.ApiKey);
 		}
 		
 		public override void ViewDidLoad ()

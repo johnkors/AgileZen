@@ -92,6 +92,10 @@
     <Compile Include="MyNavController.cs" />
     <Compile Include="StoriesTableViewController.cs" />
     <Compile Include="ProjectTableViewController.cs" />
+    <Compile Include="Storage\MonoObjectStore.cs" />
+    <Compile Include="LoginViewController.cs" />
+    <Compile Include="LoginHandler.cs" />
+    <Compile Include="RootViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -105,5 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.png" />
+    <Content Include="Img\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Img\" />
   </ItemGroup>
 </Project>
