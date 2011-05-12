@@ -5,13 +5,13 @@ using AgileZen.Lib;
 
 namespace Touch
 {
-	public delegate void OkApiKey();
+	public delegate void HandleSuccessfulLogin();
 	
 	public class LoginHandler : IHandleLogins
 	{
 		private MonoObjectStore _objectStore;
 		
-		public OkApiKey OnOkApiKey = delegate {};
+		public HandleSuccessfulLogin OnSuccessfulLogin = delegate {};
 		
 		public LoginHandler ()
 		{
@@ -23,7 +23,7 @@ namespace Touch
 			var agileZenUser = new AgileZenUser();
 			agileZenUser.ApiKey = apiKey;
 			SaveUserCredentials (agileZenUser);
-			OnOkApiKey();
+			OnSuccessfulLogin();
 		}
 
 		public void HandleErronousApiKey ()

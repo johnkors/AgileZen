@@ -20,7 +20,7 @@ namespace Touch
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			_loginHandler = new LoginHandler();
-			_loginHandler.OnOkApiKey += AddNavigationController;
+			_loginHandler.OnSuccessfulLogin += AddNavigationController;
 			
 			if(_loginHandler.HasStoredApiKey())
 			{
