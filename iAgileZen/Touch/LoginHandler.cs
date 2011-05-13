@@ -10,6 +10,7 @@ namespace Touch
 	public class LoginHandler : IHandleLogins
 	{
 		private MonoObjectStore _objectStore;
+		private UIApplication app = UIApplication.SharedApplication;
 		
 		public HandleSuccessfulLogin OnSuccessfulLogin = delegate {};
 		
@@ -23,17 +24,21 @@ namespace Touch
 			var agileZenUser = new AgileZenUser();
 			agileZenUser.ApiKey = apiKey;
 			SaveUserCredentials (agileZenUser);
+			RemoveNetworkIndicator();
 			OnSuccessfulLogin();
 		}
 
 		public void HandleErronousApiKey ()
-		{
+		{	
+			RemoveNetworkIndicator();
 			ShowInvalidCredentialsMessage("Erronous API key!");	
+		
 		}
 
 		public void HandleNoConnection (string errorMsg)
 		{
 			Console.WriteLine(errorMsg);
+			RemoveNetworkIndicator();
 			ShowInvalidCredentialsMessage("Could not connect to AgileZen!");
 		}
 		
@@ -65,6 +70,10 @@ namespace Touch
 			alertView.Show();
 		}	
 		
+		private void RemoveNetworkIndicator ()
+		{
+			app.NetworkActivityIndicatorVisible = false;
+		}
 	}
 }
 

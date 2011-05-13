@@ -5,6 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch", "Touch\Touch.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileZen.Lib", "Lib\AgileZen.Lib.csproj", "{AB63CB09-112C-4AF4-885A-04606457A5E9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalLibs", "ExternalLibs", "{A6919935-8DBA-426F-B770-5DB48875E698}"
+	ProjectSection(SolutionItems) = preProject
+		Externals\MonoTouch.Dialog.dll = Externals\MonoTouch.Dialog.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -29,6 +34,8 @@ Global
 		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Release|iPhone.Build.0 = Release|iPhone
 		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{AB63CB09-112C-4AF4-885A-04606457A5E9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Touch\Touch.csproj

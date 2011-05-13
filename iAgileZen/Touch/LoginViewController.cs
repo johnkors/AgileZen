@@ -6,15 +6,17 @@ using AgileZen.Lib;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using MonoTouch.Dialog;
+
 
 namespace Touch
 {
 	public class LoginViewController : UIViewController
 	{
-		UITextField _apiKeyTextField;
-		AgileZenService _agileZenService;
-		IHandleLogins _loginHandler;
-		
+		private UITextField _apiKeyTextField;
+		private AgileZenService _agileZenService;
+		private IHandleLogins _loginHandler;
+		private UIApplication app = UIApplication.SharedApplication;
 		private UIActivityIndicatorView _progressIndicator;
 		
 		public LoginViewController (IHandleLogins loginHandler)
@@ -26,14 +28,13 @@ namespace Touch
 		public override void ViewDidLoad()
 		{
 			View.BackgroundColor = UIColor.Black;
-			
-			var yposition = 65;
+			var yposition = 75;
 			var labelTextBoxHeighDiff = 40;
 			var usernameLbl = GetLabel("API key", yposition);
 			_apiKeyTextField = GetTextField(yposition + labelTextBoxHeighDiff);
 			var imgView = GetImageView ();
 			
-			var loginButton = GetLoginButton (yposition + 75);
+			var loginButton = GetGlassButton(yposition + 100);//GetLoginButton (yposition + 75);
 		
 			View.AddSubview(imgView);
 			View.AddSubview(usernameLbl);
@@ -46,18 +47,16 @@ namespace Touch
 			HideKeyboard ();
 		}
 		
-		private UIButton GetLoginButton (float buttonYposition)
+		private GlassButton GetGlassButton(float buttonYposition)
 		{
-			var loginButton = UIButton.FromType(UIButtonType.RoundedRect);
-			var buttonWidth = 160f;
+			var buttonWidth = 300f;
 			var center = (View.Frame.Width / 2) - (buttonWidth / 2);
-			loginButton.Frame = new RectangleF(center,buttonYposition,160f,40f);
-			loginButton.ContentMode = UIViewContentMode.Center;
-			loginButton.SetTitle("Logg inn",UIControlState.Normal);
-			loginButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
-			loginButton.TouchDown += AddProgressIndicator;
-			loginButton.TouchUpInside += HandleLoginButtonTouchUpInside;
-			return loginButton;
+			var frame = new RectangleF(center,buttonYposition,300f,50f);
+			var glassBtn = new GlassButton(frame);
+			glassBtn.SetTitle("Use",UIControlState.Normal);
+			glassBtn.TouchDown += AddProgressIndicator;
+			glassBtn.TouchUpInside += HandleLoginButtonTouchUpInside;
+			return glassBtn;
 		}
 		
 		private UIImageView GetImageView ()
@@ -72,8 +71,7 @@ namespace Touch
 		
 		private void AddProgressIndicator(object sender, EventArgs e)
 		{
-			_progressIndicator.StartAnimating();
-			this.View.AddSubview(_progressIndicator);
+			 app.NetworkActivityIndicatorVisible = true;
 		}
 
 		private void HandleLoginButtonTouchUpInside (object sender, EventArgs e)
@@ -119,10 +117,12 @@ namespace Touch
 		
 		private UITextField GetTextField(int ypos)
 		{
-			var rect = new Rectangle(10,ypos,300,30);
+			var rect = new Rectangle(10,ypos,300,40);
 			var textField = new UITextField(rect);
 			textField.BorderStyle = UITextBorderStyle.RoundedRect;
 			textField.TextAlignment = UITextAlignment.Center;
+			textField.VerticalAlignment = UIControlContentVerticalAlignment.Center;
+			
 			
 			// Hide keyboard on "return"-key click
 		    textField.ShouldReturn = delegate

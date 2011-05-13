@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using AgileZen.Lib;
+using MonoTouch.Dialog;
 
 namespace Touch
 {
