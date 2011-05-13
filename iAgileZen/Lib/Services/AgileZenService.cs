@@ -34,6 +34,12 @@ namespace AgileZen.Lib
             var url = string.Format("{0}/{2}/phases?apikey={1}&with=stories", _baseUrl, apiKey, projectId);
             Get(url, callback);
         }
+		
+		public Result<bool> IsAuthenticated()
+		{
+			var url = string.Format("{0}?apikey={1}",_baseUrl, apiKey);
+			return IsAuthenticated(url);
+		}
 	}
 }
 

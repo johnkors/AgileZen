@@ -13,26 +13,44 @@ namespace Touch
 		static NSString storieskCellIdentifier = new NSString ("storiesTVC");
 		private AgileZenService _service;
 		private string _projectId;
+		private MonoObjectStore _objectStore;
 		public IEnumerable<AgileZenStory> Stories;
+		private AgileZenUser _userFromFile;
 		
 		public StoriesTableViewController (string projectId)
 		{
-			_service = new AgileZenService(AppDelegate.APIKEY);
 			_projectId = projectId;
+			_objectStore = new MonoObjectStore();
+		}
+		
+		
+		public override void ViewDidAppear(bool animated)
+		{
+			base.ViewDidAppear(animated);
+			SetService ();
 		}
 		
 		public override void ViewDidLoad()
 		{
 			Title = "Stories";
+			if(_service == null)
+			{
+				SetService();
+			}
 			_service.GetStories(_projectId, HandleGetStoriesFinished);
 		}
 		
+		private void SetService ()
+		{
+			_userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
+			_service = new AgileZenService(_userFromFile.ApiKey);
+		}
 
 		public void HandleGetStoriesFinished (Result<AgileZenStoryResult> storyResult)
 		{
 			if(storyResult.Error == null)
 			{
-				Stories = storyResult.Value.Items; // from c in storyResult.Value.Items where c.Phase.Name == "Sprintbacklog" select c;;
+				Stories = storyResult.Value.Items; 
 			}
 			else
 			{

@@ -79,6 +79,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.Dialog, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Externals\MonoTouch.Dialog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -92,6 +96,13 @@
     <Compile Include="MyNavController.cs" />
     <Compile Include="StoriesTableViewController.cs" />
     <Compile Include="ProjectTableViewController.cs" />
+    <Compile Include="Storage\MonoObjectStore.cs" />
+    <Compile Include="LoginViewController.cs" />
+    <Compile Include="LoginHandler.cs" />
+    <Compile Include="RootViewController.cs" />
+    <Compile Include="MainMenuViewController.cs" />
+    <Compile Include="DialogControllers\Settings.cs" />
+    <Compile Include="DialogControllers\Projects.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -105,5 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.png" />
+    <Content Include="Img\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Img\" />
+    <Folder Include="DialogControllers\" />
   </ItemGroup>
 </Project>

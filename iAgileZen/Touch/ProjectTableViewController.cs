@@ -5,27 +5,45 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using AgileZen.Lib;
+using MonoTouch.Dialog;
 
 namespace Touch
 {
 	public class ProjectTableViewController : UITableViewController {
-		static NSString kCellIdentifier = new NSString ("myTVC");
+		static NSString kCellIdentifier = new NSString ("projectTVC");
 		private AgileZenService _service;
+		private MonoObjectStore _objectStore;
 		public IEnumerable<AgileZenProject> AgileZenProjects;
 		
 		public ProjectTableViewController()
 		{
-			_service = new AgileZenService(AppDelegate.APIKEY);
+			_objectStore = new MonoObjectStore();
+			
 		}
 		
-		public override void ViewDidLoad ()
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+			SetService ();
+		}
+		
+		public override void ViewDidLoad()
 		{
 			Title = "Prosjekter";
-			 _service.GetProjects(OnProjectsFetched);
+			if(_service == null)
+			{
+				SetService();
+			}
+		    _service.GetProjects(OnProjectsFetched);
 		}
-
 		
-		public void OnProjectsFetched (Result<AgileZenProjectResult> result)
+		private void SetService ()
+		{
+			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
+			_service = new AgileZenService(userFromFile.ApiKey);
+		}
+		
+		private void OnProjectsFetched (Result<AgileZenProjectResult> result)
 		{
 			InvokeOnMainThread 
 			(
@@ -38,23 +56,34 @@ namespace Touch
 					else
 					{
 						AgileZenProjects = new List<AgileZenProject>();
-						Title = "Error! Nett-tilgang?";
+						ShowErrorAlert();
 					}
 				
-					TableView.Delegate = new TableDelegate (this);
-					TableView.DataSource = new DataSource (this);
+					TableView.Delegate = new ProjectTableDelegate (this);
+					TableView.DataSource = new ProjectDataSource (this);
 					TableView.ReloadData();
+					Console.WriteLine("Reloading data");
 				}
 			);
 		}	
+
+		
+		private void ShowErrorAlert ()
+		{
+			var alertView = new UIAlertView();
+			alertView.Title = "Oops!";
+			alertView.Message = "Could not connect to AgileZen. Check network connection, or API key";
+			alertView.AddButton("OK");
+			alertView.Show();
+		}		
 		
 		//
 		// The data source for our TableView
 		//
-		class DataSource : UITableViewDataSource {
+		class ProjectDataSource : UITableViewDataSource {
 			ProjectTableViewController tvc;
 			
-			public DataSource (ProjectTableViewController tvc)
+			public ProjectDataSource (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}
@@ -81,10 +110,10 @@ namespace Touch
 		//
 		// This class receives notifications that happen on the UITableView
 		//
-		class TableDelegate : UITableViewDelegate {
+		class ProjectTableDelegate : UITableViewDelegate {
 			ProjectTableViewController tvc;
 	
-			public TableDelegate (ProjectTableViewController tvc)
+			public ProjectTableDelegate (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}
