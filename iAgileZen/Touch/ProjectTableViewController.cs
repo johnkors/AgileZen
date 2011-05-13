@@ -24,13 +24,26 @@ namespace Touch
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
-			Title = "Prosjekter";
-			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
-			_service = new AgileZenService(userFromFile.ApiKey);
-			 _service.GetProjects(OnProjectsFetched);
+			SetService ();
 		}
 		
-		public void OnProjectsFetched (Result<AgileZenProjectResult> result)
+		public override void ViewDidLoad()
+		{
+			Title = "Prosjekter";
+			if(_service == null)
+			{
+				SetService();
+			}
+		    _service.GetProjects(OnProjectsFetched);
+		}
+		
+		private void SetService ()
+		{
+			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
+			_service = new AgileZenService(userFromFile.ApiKey);
+		}
+		
+		private void OnProjectsFetched (Result<AgileZenProjectResult> result)
 		{
 			InvokeOnMainThread 
 			(
@@ -46,15 +59,16 @@ namespace Touch
 						ShowErrorAlert();
 					}
 				
-					TableView.Delegate = new TableDelegate (this);
-					TableView.DataSource = new DataSource (this);
+					TableView.Delegate = new ProjectTableDelegate (this);
+					TableView.DataSource = new ProjectDataSource (this);
 					TableView.ReloadData();
+					Console.WriteLine("Reloading data");
 				}
 			);
 		}	
 
 		
-		public void ShowErrorAlert ()
+		private void ShowErrorAlert ()
 		{
 			var alertView = new UIAlertView();
 			alertView.Title = "Oops!";
@@ -66,10 +80,10 @@ namespace Touch
 		//
 		// The data source for our TableView
 		//
-		class DataSource : UITableViewDataSource {
+		class ProjectDataSource : UITableViewDataSource {
 			ProjectTableViewController tvc;
 			
-			public DataSource (ProjectTableViewController tvc)
+			public ProjectDataSource (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}
@@ -96,10 +110,10 @@ namespace Touch
 		//
 		// This class receives notifications that happen on the UITableView
 		//
-		class TableDelegate : UITableViewDelegate {
+		class ProjectTableDelegate : UITableViewDelegate {
 			ProjectTableViewController tvc;
 	
-			public TableDelegate (ProjectTableViewController tvc)
+			public ProjectTableDelegate (ProjectTableViewController tvc)
 			{
 				this.tvc = tvc;
 			}

@@ -27,10 +27,23 @@ namespace Touch
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
+			SetService ();
+		}
+		
+		public override void ViewDidLoad()
+		{
+			Title = "Stories";
+			if(_service == null)
+			{
+				SetService();
+			}
+			_service.GetStories(_projectId, HandleGetStoriesFinished);
+		}
+		
+		private void SetService ()
+		{
 			_userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
 			_service = new AgileZenService(_userFromFile.ApiKey);
-			_service.GetStories(_projectId, HandleGetStoriesFinished);
-			Title = "Stories";
 		}
 
 		public void HandleGetStoriesFinished (Result<AgileZenStoryResult> storyResult)
