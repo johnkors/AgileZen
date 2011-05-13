@@ -85,6 +85,7 @@ namespace Touch
 				if(isAuthenticatedResult.Value)
 				{
 					HideKeyboard();
+					View.RemoveFromSuperview();
 					_loginHandler.HandleOkApiKey(_apiKeyTextField.Text);
 				
 				}
