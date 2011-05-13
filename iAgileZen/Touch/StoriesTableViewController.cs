@@ -15,21 +15,23 @@ namespace Touch
 		private string _projectId;
 		private MonoObjectStore _objectStore;
 		public IEnumerable<AgileZenStory> Stories;
+		private AgileZenUser _userFromFile;
 		
 		public StoriesTableViewController (string projectId)
 		{
-			_objectStore = new MonoObjectStore();
-			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
-			_service = new AgileZenService(userFromFile.ApiKey);
 			_projectId = projectId;
+			_objectStore = new MonoObjectStore();
 		}
 		
-		public override void ViewDidLoad()
+		
+		public override void ViewDidAppear(bool animated)
 		{
-			Title = "Stories";
+			base.ViewDidAppear(animated);
+			_userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
+			_service = new AgileZenService(_userFromFile.ApiKey);
 			_service.GetStories(_projectId, HandleGetStoriesFinished);
+			Title = "Stories";
 		}
-		
 
 		public void HandleGetStoriesFinished (Result<AgileZenStoryResult> storyResult)
 		{

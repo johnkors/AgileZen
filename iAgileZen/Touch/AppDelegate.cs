@@ -41,7 +41,8 @@ namespace Touch
 			window.AddSubview(_navigationController.View);
 			
 			_projectTableViewController = new ProjectTableViewController();
-			_navigationController.PushViewController(_projectTableViewController,false);
+			var mainMenuViewController = new MainMenuViewController();
+			_navigationController.PushViewController(mainMenuViewController,false);
 		}
 
 		private void ShowLoginView ()

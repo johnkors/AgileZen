@@ -100,6 +100,9 @@
     <Compile Include="LoginViewController.cs" />
     <Compile Include="LoginHandler.cs" />
     <Compile Include="RootViewController.cs" />
+    <Compile Include="MainMenuViewController.cs" />
+    <Compile Include="DialogControllers\Settings.cs" />
+    <Compile Include="DialogControllers\Projects.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -117,5 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Img\" />
+    <Folder Include="DialogControllers\" />
   </ItemGroup>
 </Project>

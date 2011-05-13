@@ -18,16 +18,17 @@ namespace Touch
 		public ProjectTableViewController()
 		{
 			_objectStore = new MonoObjectStore();
-			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
-			_service = new AgileZenService(userFromFile.ApiKey);
+			
 		}
 		
-		public override void ViewDidLoad ()
+		public override void ViewDidAppear (bool animated)
 		{
+			base.ViewDidAppear (animated);
 			Title = "Prosjekter";
+			var userFromFile = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
+			_service = new AgileZenService(userFromFile.ApiKey);
 			 _service.GetProjects(OnProjectsFetched);
 		}
-
 		
 		public void OnProjectsFetched (Result<AgileZenProjectResult> result)
 		{
@@ -42,7 +43,7 @@ namespace Touch
 					else
 					{
 						AgileZenProjects = new List<AgileZenProject>();
-						Title = "Error! Nett-tilgang?";
+						ShowErrorAlert();
 					}
 				
 					TableView.Delegate = new TableDelegate (this);
@@ -51,6 +52,16 @@ namespace Touch
 				}
 			);
 		}	
+
+		
+		public void ShowErrorAlert ()
+		{
+			var alertView = new UIAlertView();
+			alertView.Title = "Oops!";
+			alertView.Message = "Could not connect to AgileZen. Check network connection, or API key";
+			alertView.AddButton("OK");
+			alertView.Show();
+		}		
 		
 		//
 		// The data source for our TableView
