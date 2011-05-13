@@ -9,11 +9,18 @@ namespace Touch
 	{
 		private UINavigationController _navController;
 		private MonoObjectStore _objectStore;
+		private UIImage _icon;
+		
+		public UIImage Icon 
+		{
+			get { return _icon; }
+		}
 		
 		public Settings (UINavigationController navController)
 		{
 			_navController = navController;
 			_objectStore = new MonoObjectStore();
+			_icon = CreateIconImage();
 		}
 		
 		public void PushSettingsDialog()
@@ -23,16 +30,21 @@ namespace Touch
 			_navController.PushViewController (dv, true);
 		}
 		
+		private UIImage CreateIconImage()
+		{
+			return UIImage.FromFile("Img/20-gear2.png");
+		}
+		
 		private RootElement CreateRoot ()
 		{
 			var user = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
 			
-			var apiElement = new EntryElement ("API Key", "Enter API key", user.ApiKey);
+			var apiElement = new EntryElement ("Key", "Enter API key", user.ApiKey);
 			apiElement.Changed += HandleChangedApiKey;
-					
+			
 			return new RootElement ("Settings") 
 			{
-				new Section ()
+				new Section (null,"API key as activated on AgileZen.com")
 				{
 					apiElement
 				}

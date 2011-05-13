@@ -117,6 +117,10 @@
   <ItemGroup>
     <Content Include="Default.png" />
     <Content Include="Img\logo.png" />
+    <Content Include="Img\30-key.png" />
+    <Content Include="Img\33-cabinet.png" />
+    <Content Include="Img\44-shoebox.png" />
+    <Content Include="Img\20-gear2.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Img\" />

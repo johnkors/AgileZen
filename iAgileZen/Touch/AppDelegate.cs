@@ -13,7 +13,7 @@ namespace Touch
 		private LoginHandler _loginHandler;
 		private LoginViewController _loginViewController;
 		private UINavigationController _navigationController;
-		private ProjectTableViewController _projectTableViewController;
+		private MainMenuViewController _mainMenuViewController;
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -40,9 +40,8 @@ namespace Touch
 			_navigationController.NavigationBar.BarStyle = UIBarStyle.Black;
 			window.AddSubview(_navigationController.View);
 			
-			_projectTableViewController = new ProjectTableViewController();
-			var mainMenuViewController = new MainMenuViewController();
-			_navigationController.PushViewController(mainMenuViewController,false);
+			_mainMenuViewController = new MainMenuViewController();
+			_navigationController.PushViewController(_mainMenuViewController,false);
 		}
 
 		private void ShowLoginView ()

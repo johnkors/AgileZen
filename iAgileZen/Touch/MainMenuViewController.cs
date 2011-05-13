@@ -14,12 +14,13 @@ namespace Touch
 			Projects = new Projects(NavigationController);
 			Settings = new Settings(NavigationController);
 			
+			
 			var menu = new RootElement ("Overview")
 			{
 				new Section ("Select")
 				{
-					new StringElement ("Projects", Projects.PushProjectsViewController),
-					new StringElement ("Settings", Settings.PushSettingsDialog)
+					new ImageStringElement ("Projects", Projects.PushProjectsViewController, Projects.Icon),
+					new ImageStringElement ("Settings", Settings.PushSettingsDialog, Settings.Icon)
 				}
 			};
 			
