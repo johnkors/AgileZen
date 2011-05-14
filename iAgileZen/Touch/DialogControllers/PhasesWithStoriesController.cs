@@ -39,18 +39,18 @@ namespace Touch
 			(
 				delegate 
 				{
-					IEnumerable<AgileZenPhase> phases;
+					IEnumerable<AgileZenPhase> phasesWithoutBacklogAndArchive;
 					if(result.Error == null)
 					{
 						var maxIndex = (from c in result.Value.Items select c.Index).Max();
-						phases = from c in result.Value.Items where c.Index > 0 && c.Index < maxIndex select c;
+						phasesWithoutBacklogAndArchive = from c in result.Value.Items where c.Index > 0 && c.Index < maxIndex select c;
 					}
 					else
 					{
-						phases = new List<AgileZenPhase>();
+						phasesWithoutBacklogAndArchive = new List<AgileZenPhase>();
 						ShowErrorAlert();
 					}
-					UpdateRoot(phases);
+					UpdateRoot(phasesWithoutBacklogAndArchive);
 				}
 			);
 		}
@@ -67,8 +67,6 @@ namespace Touch
 					var element = new StyledStringElement(story.Owner.Name,story.Text,UITableViewCellStyle.Subtitle);
 					element.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 					element.Tapped += storyDetails.PushViewController;
-					//new ImageStringElement(story.Text, storyDetails.PushViewController, storyDetails.Icon);
-				
 					section.Add(element);
 				}
 				

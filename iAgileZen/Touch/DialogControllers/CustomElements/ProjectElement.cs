@@ -97,7 +97,6 @@ namespace Touch
 	
 		public override void Selected (DialogViewController dvc, UITableView tableView, NSIndexPath path)
 		{
-			Console.WriteLine("Selected project");
 			var phasesWithStoriesController = new PhasesWithStoriesController(dvc.NavigationController, Id);
 			phasesWithStoriesController.PushViewController();
 		}

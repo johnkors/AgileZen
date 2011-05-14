@@ -9,6 +9,11 @@ namespace Touch
 		private AgileZenStory _story;
 		private AgileZenPhase _phase;
 		
+		public StoryDetailsController(UINavigationController navController, AgileZenStory story) : this(navController,story,new AgileZenPhase())
+		{
+			
+		}
+		
 		public StoryDetailsController (UINavigationController navController, AgileZenStory story, AgileZenPhase phase) : base(navController)
 		{
 			_story = story;

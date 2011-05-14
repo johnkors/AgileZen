@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Lib.Services
 {
-    class JsonSerializer : ISerializer
+    public class JsonSerializer : ISerializer
     {
         public string Serialize(object input)
         {

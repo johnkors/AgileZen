@@ -74,7 +74,6 @@ namespace Touch
 						else
 						{
 							_currentUser = new AgileZenUser();
-							Console.WriteLine("Error in call to /me");
 						}
 						UpdateRoot(couldFetchUser);
 					}

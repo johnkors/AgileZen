@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Xml.Serialization;
+using Lib.Services;
 
 namespace Touch
 {
@@ -17,12 +18,14 @@ namespace Touch
 		
 		public void Save<T>(T item, string fileName)
 		{	
+			var serializer = new JsonSerializer();
 			
-			var serializer = new XmlSerializer(typeof(T));
             using (var stream = new FileStream(Path.Combine(_folderPath, fileName), FileMode.Create))
             {
-				serializer.Serialize(stream, item);
-                stream.Close();
+				var serialized = serializer.Serialize(item);
+				var streamWriter = new StreamWriter(stream);
+				streamWriter.Write(serialized);
+				streamWriter.Close();
             }	
 		}
 
@@ -33,11 +36,11 @@ namespace Touch
 			if(!File.Exists(path))
 			    throw new FileNotFoundException("File not found: " + fileName);
 					
-            var serializer = new XmlSerializer(typeof(T));
+			var serializer = new Lib.Services.JsonSerializer();
 			T item = default(T);
             using (var stream = new FileStream(path, FileMode.Open))
             {
-                item = (T)serializer.Deserialize(stream);
+				item = serializer.Deserialize<T>(stream);
             } 
 			
 			return item;

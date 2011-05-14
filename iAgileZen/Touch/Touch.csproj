@@ -104,6 +104,7 @@
     <Compile Include="DialogControllers\BaseController.cs" />
     <Compile Include="DialogControllers\CustomElements\StoryDetailElement.cs" />
     <Compile Include="DialogControllers\StoryDetailsController.cs" />
+    <Compile Include="DialogControllers\MyStoriesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />

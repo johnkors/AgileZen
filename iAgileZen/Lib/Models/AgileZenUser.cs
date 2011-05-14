@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 namespace AgileZen.Lib
 {
     public class AgileZenUser
@@ -8,5 +9,6 @@ namespace AgileZen.Lib
         public string Email { get; set; }
 		
 		public string ApiKey {get;set;}
+		public IEnumerable<AgileZenStory> Stories { get; set; }
     }
 }
