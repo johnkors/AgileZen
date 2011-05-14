@@ -15,7 +15,7 @@ namespace Touch
 		{
 		}
 		
-		public void PushViewController()
+		public override void PushViewController()
 		{
 			var rootElement = new RootElement("Projects"); // empty root. Updateded async
 			_dv = new DialogViewController(rootElement,true);

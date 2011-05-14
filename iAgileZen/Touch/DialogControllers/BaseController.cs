@@ -21,6 +21,8 @@ namespace Touch
 			get { return _icon; }
 		}
 		
+		public abstract void PushViewController();
+		
 		protected abstract UIImage CreateIconImage();
 		
 		protected void PushViewController(UIViewController viewController, bool animated)

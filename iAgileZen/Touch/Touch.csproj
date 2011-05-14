@@ -97,13 +97,13 @@
     <Compile Include="LoginHandler.cs" />
     <Compile Include="Controllers\LoginViewController.cs" />
     <Compile Include="Controllers\MainMenuViewController.cs" />
-    <Compile Include="DialogControllers\StoryDetails.cs" />
     <Compile Include="DialogControllers\PhasesWithStoriesController.cs" />
     <Compile Include="DialogControllers\ProjectsController.cs" />
     <Compile Include="DialogControllers\SettingsController.cs" />
     <Compile Include="DialogControllers\CustomElements\ProjectElement.cs" />
-    <Compile Include="DialogControllers\CustomElements\StoryElement.cs" />
     <Compile Include="DialogControllers\BaseController.cs" />
+    <Compile Include="DialogControllers\CustomElements\StoryDetailElement.cs" />
+    <Compile Include="DialogControllers\StoryDetailsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />

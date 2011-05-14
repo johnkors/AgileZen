@@ -12,7 +12,7 @@ namespace Touch
 			
 		}
 		
-		public void PushViewController()
+		public override void PushViewController()
 		{
 			var root = CreateRoot ();
 			var dv = new DialogViewController (root, true);

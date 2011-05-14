@@ -14,13 +14,17 @@ namespace Touch
 			Projects = new ProjectsController(NavigationController);
 			Settings = new SettingsController(NavigationController);
 			
+			var projectsElement = new ImageStringElement ("Projects", Projects.PushViewController, Projects.Icon);
+			projectsElement.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			var settingsElement = new ImageStringElement ("Settings", Settings.PushViewController, Settings.Icon);
+			settingsElement.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 			
 			var menu = new RootElement ("Overview")
 			{
 				new Section ("Select")
 				{
-					new ImageStringElement ("Projects", Projects.PushViewController, Projects.Icon),
-					new ImageStringElement ("Settings", Settings.PushViewController, Settings.Icon)
+					projectsElement,
+					settingsElement,
 				}
 			};
 			

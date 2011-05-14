@@ -15,13 +15,18 @@ namespace Touch
 		public PhasesWithStoriesController (UINavigationController navController, string projectId) : base(navController)
 		{
 			_projectId = projectId;
+		}
+		
+		public override void PushViewController()
+		{
 			var root = new RootElement("Stories");
 			_dv = new DialogViewController(root,true);
 			PushViewController(_dv, true);
-			UpdateRoot();
+			GetPhasesWithStories();
 		}
+			
 		
-		private void UpdateRoot()
+		private void GetPhasesWithStories()
 		{
 			var user = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
 			var azService = new AgileZenService(user.ApiKey);
@@ -58,8 +63,12 @@ namespace Touch
 				
 				foreach(var story in phase.Stories)
 				{
-					var storyDetails = new StoryDetails(_navController, story, phase);
-					var element = new ImageStringElement(story.Text, storyDetails.PushViewController, storyDetails.Icon) as Element;
+					var storyDetails = new StoryDetailsController(_navController, story, phase);
+					var element = new StyledStringElement(story.Owner.Name,story.Text,UITableViewCellStyle.Subtitle);
+					element.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+					element.Tapped += storyDetails.PushViewController;
+					//new ImageStringElement(story.Text, storyDetails.PushViewController, storyDetails.Icon);
+				
 					section.Add(element);
 				}
 				

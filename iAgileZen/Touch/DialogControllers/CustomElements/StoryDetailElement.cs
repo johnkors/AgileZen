@@ -9,7 +9,7 @@ using AgileZen.Lib;
 
 namespace Touch
 {
-	public class StoryElement : OwnerDrawnElement
+	public class StoryDetailElement : OwnerDrawnElement
 	{
 		CGGradient gradient;
 		private UIFont descriptionFont = UIFont.SystemFontOfSize(14.0f);
@@ -17,7 +17,7 @@ namespace Touch
 		private string _text;
 		
 
-		public StoryElement (AgileZenStory story) : base(UITableViewCellStyle.Default, "sampleOwnerDrawnElement")
+		public StoryDetailElement (AgileZenStory story) : base(UITableViewCellStyle.Default, "sampleOwnerDrawnElement")
 		{
 			this.Text = story.Text;
 			this.Status = story.Status;

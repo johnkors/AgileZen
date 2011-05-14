@@ -14,9 +14,7 @@ namespace Touch
 		CGGradient gradient;
 		private UIFont descriptionFont = UIFont.SystemFontOfSize(10.0f);
 		private UIFont nameFont = UIFont.BoldSystemFontOfSize(14.0f);
-		private UIFont dateFont = UIFont.BoldSystemFontOfSize(14.0f);
 		private string _description;
-		
 
 		public ProjectElement (AgileZenProject project) : base(UITableViewCellStyle.Default, "sampleOwnerDrawnElement")
 		{
@@ -100,10 +98,9 @@ namespace Touch
 		public override void Selected (DialogViewController dvc, UITableView tableView, NSIndexPath path)
 		{
 			Console.WriteLine("Selected project");
-			PhasesWithStoriesController storiesDialog = new PhasesWithStoriesController(dvc.NavigationController, Id);
+			var phasesWithStoriesController = new PhasesWithStoriesController(dvc.NavigationController, Id);
+			phasesWithStoriesController.PushViewController();
 		}
-		
-		
 		
 		public override string ToString ()
 		{
