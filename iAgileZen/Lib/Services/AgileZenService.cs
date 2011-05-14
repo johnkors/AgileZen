@@ -4,7 +4,8 @@ namespace AgileZen.Lib
 {
 	public class AgileZenService : RestService
 	{
-        private const string _baseUrl = "https://agilezen.com/api/v1/projects";
+		private const string _baseUrlMe = "https://agilezen.com/api/v1/";
+        private const string _baseUrl =  _baseUrlMe + "projects";
 	    private string apiKey;
 	    public AgileZenService(string apiKey)
 	    {
@@ -39,6 +40,20 @@ namespace AgileZen.Lib
 		{
 			var url = string.Format("{0}?apikey={1}",_baseUrl, apiKey);
 			return IsAuthenticated(url);
+		}
+		
+		public void GetMe(Action<Result<AgileZenUser>> callback, bool withStories)
+		{
+			string url; 
+		    if(withStories)
+			{
+				url	= string.Format("{0}/me?apikey={1}&with=stories", _baseUrlMe, apiKey);
+			}
+			else
+			{
+				url	= string.Format("{0}/me?apikey={1}", _baseUrlMe, apiKey);
+			}
+			Get(url, callback);
 		}
 	}
 }
