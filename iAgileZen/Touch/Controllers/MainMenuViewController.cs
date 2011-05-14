@@ -6,21 +6,21 @@ namespace Touch
 {
 	public class MainMenuViewController : UIViewController
 	{
-		public Projects Projects {get;set;}
-		public Settings Settings {get;set;}
+		public ProjectsController Projects {get;set;}
+		public SettingsController Settings {get;set;}
 				
 		public override void ViewDidLoad()
 		{
-			Projects = new Projects(NavigationController);
-			Settings = new Settings(NavigationController);
+			Projects = new ProjectsController(NavigationController);
+			Settings = new SettingsController(NavigationController);
 			
 			
 			var menu = new RootElement ("Overview")
 			{
 				new Section ("Select")
 				{
-					new ImageStringElement ("Projects", Projects.PushProjectsViewController, Projects.Icon),
-					new ImageStringElement ("Settings", Settings.PushSettingsDialog, Settings.Icon)
+					new ImageStringElement ("Projects", Projects.PushViewController, Projects.Icon),
+					new ImageStringElement ("Settings", Settings.PushViewController, Settings.Icon)
 				}
 			};
 			

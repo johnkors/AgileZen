@@ -32,12 +32,10 @@ namespace Touch
 		{	
 			RemoveNetworkIndicator();
 			ShowInvalidCredentialsMessage("Erronous API key!");	
-		
 		}
 
 		public void HandleNoConnection (string errorMsg)
 		{
-			Console.WriteLine(errorMsg);
 			RemoveNetworkIndicator();
 			ShowInvalidCredentialsMessage("Could not connect to AgileZen!");
 		}

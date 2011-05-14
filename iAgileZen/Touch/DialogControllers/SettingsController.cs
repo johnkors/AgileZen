@@ -5,32 +5,21 @@ using MonoTouch.Dialog;
 
 namespace Touch
 {
-	public class Settings
+	public class SettingsController : BaseController
 	{
-		private UINavigationController _navController;
-		private MonoObjectStore _objectStore;
-		private UIImage _icon;
-		
-		public UIImage Icon 
+		public SettingsController (UINavigationController navController) : base(navController)
 		{
-			get { return _icon; }
+			
 		}
 		
-		public Settings (UINavigationController navController)
-		{
-			_navController = navController;
-			_objectStore = new MonoObjectStore();
-			_icon = CreateIconImage();
-		}
-		
-		public void PushSettingsDialog()
+		public void PushViewController()
 		{
 			var root = CreateRoot ();
 			var dv = new DialogViewController (root, true);
-			_navController.PushViewController (dv, true);
+			PushViewController (dv, true);
 		}
 		
-		private UIImage CreateIconImage()
+		protected override UIImage CreateIconImage()
 		{
 			return UIImage.FromFile("Img/20-gear2.png");
 		}

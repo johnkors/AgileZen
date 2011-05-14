@@ -93,16 +93,17 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MyNavController.cs" />
-    <Compile Include="StoriesTableViewController.cs" />
-    <Compile Include="ProjectTableViewController.cs" />
     <Compile Include="Storage\MonoObjectStore.cs" />
-    <Compile Include="LoginViewController.cs" />
     <Compile Include="LoginHandler.cs" />
-    <Compile Include="RootViewController.cs" />
-    <Compile Include="MainMenuViewController.cs" />
-    <Compile Include="DialogControllers\Settings.cs" />
-    <Compile Include="DialogControllers\Projects.cs" />
+    <Compile Include="Controllers\LoginViewController.cs" />
+    <Compile Include="Controllers\MainMenuViewController.cs" />
+    <Compile Include="DialogControllers\StoryDetails.cs" />
+    <Compile Include="DialogControllers\PhasesWithStoriesController.cs" />
+    <Compile Include="DialogControllers\ProjectsController.cs" />
+    <Compile Include="DialogControllers\SettingsController.cs" />
+    <Compile Include="DialogControllers\CustomElements\ProjectElement.cs" />
+    <Compile Include="DialogControllers\CustomElements\StoryElement.cs" />
+    <Compile Include="DialogControllers\BaseController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -125,5 +126,7 @@
   <ItemGroup>
     <Folder Include="Img\" />
     <Folder Include="DialogControllers\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="DialogControllers\CustomElements\" />
   </ItemGroup>
 </Project>
