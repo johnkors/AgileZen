@@ -13,6 +13,7 @@ namespace AgileZen.Lib
         public AgileZenPhase Phase { get; set; }
         public AgileZenUser Creator { get; set; }
         public AgileZenUser Owner { get; set; }
+		public AgileZenProject Project {get;set;}
         public IEnumerable<AgileZenTask> Tasks { get; set; }
 
         public override string ToString()

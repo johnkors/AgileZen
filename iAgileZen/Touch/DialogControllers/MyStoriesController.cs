@@ -18,7 +18,6 @@ namespace Touch
 		{
 		}
 		
-		
 		public override void PushViewController()
 		{
 			var rootElement = new RootElement("My stories"); // empty root. Updateded async
@@ -36,25 +35,25 @@ namespace Touch
 		{
 			_currentUser = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
 			var azService = new AgileZenService(_currentUser.ApiKey);
-			azService.GetMe(OnStoriesFetched,true);
+			azService.GetMyStories(OnStoriesFetched);
 		}
 		
-		private void OnStoriesFetched (Result<AgileZenUser> result)
+		private void OnStoriesFetched (Result<AgileZenMyStories> result)
 		{
 			_navController.InvokeOnMainThread(
 				delegate{
 				
-					IEnumerable<AgileZenStory> simpleStoriesWithoutOwnerOrPhases;
+					IEnumerable<AgileZenStory> myStories;
 					if(result.Error == null)
 					{
-						simpleStoriesWithoutOwnerOrPhases = result.Value.Stories;
+						myStories = result.Value.Items;
 					}
 					else
 					{
-						simpleStoriesWithoutOwnerOrPhases = new List<AgileZenStory>();
+						myStories = new List<AgileZenStory>();
 						ShowErrorAlert();
 					}
-					UpdateRoot(simpleStoriesWithoutOwnerOrPhases);
+					UpdateRoot(myStories);
 				
 			});
 
@@ -69,27 +68,48 @@ namespace Touch
 			alertView.Show();
 		}	
 		
-		private void UpdateRoot(IEnumerable<AgileZenStory> simpleStoriesWithoutOwnerOrPhases)
+		private void UpdateRoot(IEnumerable<AgileZenStory> myStories)
 		{
-			List<Element> elements = new List<Element>();
-			foreach (var simpleStory in simpleStoriesWithoutOwnerOrPhases) {
-				simpleStory.Owner = new AgileZenUser(){Name = "Me"};
-				var storyDetails = new StoryDetailsController(_navController, simpleStory);
-				var element = new StyledStringElement(simpleStory.Owner.Name,simpleStory.Text,UITableViewCellStyle.Subtitle);
-				element.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-				element.Tapped += storyDetails.PushViewController;
-				elements.Add(element);
-			}
+			var projects = (from c in myStories select c.Project).DistinctBy( project => project.Id);
 			
-			_dv.Root = UpdatedRoot(elements);
+			var projectSections = new List<Section>();
+			foreach(var project in projects)
+			{
+				var section = new Section(project.Name);
+				var elements = GetMatchingStoriesToProject(project, myStories);
+				section.Add(elements);
+				projectSections.Add(section);
+			}
+			_dv.Root = UpdatedRoot(projectSections);
 		}
 		
-		private RootElement UpdatedRoot (IEnumerable<Element> elements)
+		private IEnumerable<Element> GetMatchingStoriesToProject(AgileZenProject project,IEnumerable<AgileZenStory> myStories)
 		{
-			var projectsSection = new Section (null,"Stories assigned to you");
-			projectsSection.Add(elements);
+			List<Element> elements = new List<Element>();
+			foreach (AgileZenStory story in myStories) 
+			{
+				if(story.Project.Id == project.Id)
+				{
+					var element = CreateStoryElement (story);
+					elements.Add(element);
+				}
+			}
+			return elements;
+		}
+		
+		private Element CreateStoryElement (AgileZenStory story)
+		{
+			var storyDetails = new StoryDetailsController(_navController, story);
+			var element = new StyledStringElement(story.Owner.Name,story.Text,UITableViewCellStyle.Subtitle);
+			element.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+			element.Tapped += storyDetails.PushViewController;
+			return element;
+		}
+		
+		private RootElement UpdatedRoot (IEnumerable<Section> sections)
+		{
 			var rootElement = new RootElement ("My stories");
-			rootElement.Add(projectsSection);
+			rootElement.Add(sections);
 			return rootElement;
 		}	
 		

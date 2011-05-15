@@ -106,6 +106,8 @@
     <Compile Include="Models\AgileZenTask.cs" />
     <Compile Include="Models\AgileZenPhaseResult.cs" />
     <Compile Include="Interfaces\IHandleLogins.cs" />
+    <Compile Include="Models\AgileZenMyStories.cs" />
+    <Compile Include="MoreLinqExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

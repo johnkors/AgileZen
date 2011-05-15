@@ -56,7 +56,7 @@ namespace Touch
 		private void GetMe()
 		{
 			var agService = new AgileZenService(_currentUser.ApiKey);
-			agService.GetMe(HandleMeCallFinished, false);
+			agService.GetMe(HandleMeCallFinished);
 		}
 		
 		private void HandleMeCallFinished(Result<AgileZenUser> result)
