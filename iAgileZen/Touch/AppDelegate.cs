@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 using AgileZen.Lib;
+using escoz;
 
 namespace Touch
 {
@@ -14,11 +15,14 @@ namespace Touch
 		private LoginViewController _loginViewController;
 		private UINavigationController _navigationController;
 		private MainMenuViewController _mainMenuViewController;
+		private LoadingHUDView _hud;
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			_loginHandler = new LoginHandler();
+			_loginHandler.OnLoginBegan += ShowProgressHud;
 			_loginHandler.OnSuccessfulLogin += AddNavigationController;
+			_loginHandler.OnLoginFinished += RemoveProgressHud;
 			
 			if(_loginHandler.HasStoredApiKey())
 			{
@@ -48,6 +52,18 @@ namespace Touch
 		{
 			_loginViewController = new LoginViewController(_loginHandler);
 			window.AddSubview(_loginViewController.View); 
+		}
+		
+		private void ShowProgressHud()
+		{
+			_hud = new LoadingHUDView("Contacting AgileZen", "Verifying API key");
+			window.AddSubview(_hud);
+			_hud.StartAnimating();
+		}
+		
+		private void RemoveProgressHud()
+		{
+			_hud.StopAnimating();
 		}
 	}
 	

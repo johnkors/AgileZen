@@ -105,6 +105,7 @@
     <Compile Include="DialogControllers\CustomElements\StoryDetailElement.cs" />
     <Compile Include="DialogControllers\StoryDetailsController.cs" />
     <Compile Include="DialogControllers\MyStoriesController.cs" />
+    <Compile Include="ExternalUIComponents\LoadingHUDView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />

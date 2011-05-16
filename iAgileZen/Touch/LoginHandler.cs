@@ -11,11 +11,18 @@ namespace Touch
 		private MonoObjectStore _objectStore;
 		private UIApplication app = UIApplication.SharedApplication;
 		
-		public event SuccessfulLoginHandler OnSuccessfulLogin = delegate {};
+		public event LoginEventHandler OnSuccessfulLogin = delegate {};
+		public event LoginEventHandler OnLoginBegan = delegate{};
+		public event LoginEventHandler OnLoginFinished = delegate{};
 		
 		public LoginHandler ()
 		{
 			_objectStore = new MonoObjectStore();
+		}
+		
+		public void HandleLoginBegan()
+		{
+			OnLoginBegan();
 		}
 
 		public void HandleOkApiKey (string apiKey)
@@ -25,17 +32,20 @@ namespace Touch
 			SaveUserCredentials (agileZenUser);
 			RemoveNetworkIndicator();
 			OnSuccessfulLogin();
+			OnLoginFinished();
 		}
 
 		public void HandleErronousApiKey ()
 		{	
 			RemoveNetworkIndicator();
+			OnLoginFinished();
 			ShowInvalidCredentialsMessage("Erronous API key!");	
 		}
 
 		public void HandleNoConnection (string errorMsg)
 		{
 			RemoveNetworkIndicator();
+			OnLoginFinished();
 			ShowInvalidCredentialsMessage("Could not connect to AgileZen!");
 		}
 		

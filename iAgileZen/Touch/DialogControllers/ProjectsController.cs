@@ -13,11 +13,12 @@ namespace Touch
 		
 		public ProjectsController(UINavigationController navController) : base(navController)
 		{
+			
 		}
 		
 		public override void PushViewController()
 		{
-			var rootElement = new RootElement("Projects"); // empty root. Updateded async
+			var rootElement = new RootElement("Projects");// empty root. Updateded async
 			_dv = new DialogViewController(rootElement,true);
 			PushViewController(_dv,true);
 			GetProjectElements();
@@ -33,6 +34,7 @@ namespace Touch
 			var user = _objectStore.Load<AgileZenUser>("AgileZenUser.txt");
 			var azService = new AgileZenService(user.ApiKey);
 			azService.GetProjects(OnProjectsFetched);
+	
 		}
 		
 		private void OnProjectsFetched (Result<AgileZenProjectResult> result)
@@ -52,6 +54,7 @@ namespace Touch
 						ShowErrorAlert();
 					}
 					UpdateRoot(projects);
+					StopAnimatingHud();
 				}
 			);
 		}	

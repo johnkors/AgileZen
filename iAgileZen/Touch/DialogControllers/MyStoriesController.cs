@@ -54,6 +54,7 @@ namespace Touch
 						ShowErrorAlert();
 					}
 					UpdateRoot(myStories);
+					StopAnimatingHud();
 				
 			});
 

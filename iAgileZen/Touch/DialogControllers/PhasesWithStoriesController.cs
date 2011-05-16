@@ -51,6 +51,7 @@ namespace Touch
 						ShowErrorAlert();
 					}
 					UpdateRoot(phasesWithoutBacklogAndArchive);
+					StopAnimatingHud();
 				}
 			);
 		}

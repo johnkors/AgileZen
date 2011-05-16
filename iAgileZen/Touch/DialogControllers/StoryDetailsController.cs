@@ -25,6 +25,7 @@ namespace Touch
 			var root = CreateRoot();
 			var dv = new DialogViewController(root,true);
 			PushViewController(dv,true);
+			StopAnimatingHud();
 		}
 		
 		private RootElement CreateRoot()

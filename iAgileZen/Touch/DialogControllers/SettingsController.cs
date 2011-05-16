@@ -47,6 +47,7 @@ namespace Touch
 		
 		private void HandleChangedApiKey(object sender, EventArgs e)
 		{
+			StartAnimatingHud();
 			_currentUser.ApiKey = ((EntryElement) sender).Value;
 			_objectStore.Save<AgileZenUser>(_currentUser,"AgileZenUser.txt");
 			GetMe();
@@ -76,6 +77,7 @@ namespace Touch
 							_currentUser = new AgileZenUser();
 						}
 						UpdateRoot(couldFetchUser);
+						StopAnimatingHud();
 					}
 				);
 		}

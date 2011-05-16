@@ -76,6 +76,7 @@ namespace Touch
 
 		private void HandleLoginButtonTouchUpInside (object sender, EventArgs e)
 		{
+			_loginHandler.HandleLoginBegan();
 			var enteredApiKey = _apiKeyTextField.Text;
 			_agileZenService = new AgileZenService(enteredApiKey);
 			var isAuthenticatedResult = _agileZenService.IsAuthenticated();
