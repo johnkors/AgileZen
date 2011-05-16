@@ -5,14 +5,13 @@ using AgileZen.Lib;
 
 namespace Touch
 {
-	public delegate void HandleSuccessfulLogin();
 	
 	public class LoginHandler : IHandleLogins
 	{
 		private MonoObjectStore _objectStore;
 		private UIApplication app = UIApplication.SharedApplication;
 		
-		public HandleSuccessfulLogin OnSuccessfulLogin = delegate {};
+		public event SuccessfulLoginHandler OnSuccessfulLogin = delegate {};
 		
 		public LoginHandler ()
 		{
