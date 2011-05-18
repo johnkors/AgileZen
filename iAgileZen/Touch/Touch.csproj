@@ -106,6 +106,8 @@
     <Compile Include="DialogControllers\StoryDetailsController.cs" />
     <Compile Include="DialogControllers\MyStoriesController.cs" />
     <Compile Include="ExternalUIComponents\LoadingHUDView.cs" />
+    <Compile Include="ExternalUIComponents\PagedViewController.cs" />
+    <Compile Include="DialogControllers\CustomElements\PhasesPagedDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
@@ -124,6 +126,14 @@
     <Content Include="Img\33-cabinet.png" />
     <Content Include="Img\44-shoebox.png" />
     <Content Include="Img\20-gear2.png" />
+    <Content Include="Img\agilezen_1.png" />
+    <Content Include="Img\agilezen_2.png" />
+    <Content Include="Img\agilezen_3.png" />
+    <Content Include="Img\agilezen_4.png" />
+    <Content Include="Img\agilezen_5.png" />
+    <Content Include="Img\agilezen_6.png" />
+    <Content Include="Img\agilezen_7.png" />
+    <Content Include="Img\agilezen-main.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Img\" />

@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using AgileZen.Lib;
+using escoz;
 
 namespace Touch
 {
 	public class PhasesWithStoriesController : BaseController
 	{
-		private DialogViewController _dv;
+		private PagedViewController _pv;
 		private string _projectId;
 		
 		public PhasesWithStoriesController (UINavigationController navController, string projectId) : base(navController)
@@ -19,9 +20,10 @@ namespace Touch
 		
 		public override void PushViewController()
 		{
-			var root = new RootElement("Stories");
-			_dv = new DialogViewController(root,true);
-			PushViewController(_dv, true);
+			_pv = new PagedViewController(){
+				PagedViewDataSource = new PhasesPagedDataSource(new List<DialogViewController>())
+			};
+			PushViewController(_pv,true);
 			GetPhasesWithStories();
 		}
 			
@@ -58,10 +60,9 @@ namespace Touch
 		
 		private void UpdateRoot(IEnumerable<AgileZenPhase> phases)
 		{
-			var projectSections = new List<Section>();
+			var dialogViewControllers = new List<DialogViewController>();
 			foreach (AgileZenPhase phase in phases) {
-				var section = new Section (phase.Name,phase.Description);
-				
+				var section = new Section (phase.Name, phase.Description);
 				foreach(var story in phase.Stories)
 				{
 					var storyDetails = new StoryDetailsController(_navController, story, phase);
@@ -70,12 +71,13 @@ namespace Touch
 					element.Tapped += storyDetails.PushViewController;
 					section.Add(element);
 				}
-				
-				projectSections.Add(section);
+				var root = new RootElement(phase.Name);
+				root.Add(section);
+				var phaseController = new DialogViewController(root);
+				dialogViewControllers.Add(phaseController);
 			}
-			var rootElement = new RootElement ("Stories");
-			rootElement.Add(projectSections);
-			_dv.Root = rootElement;
+			_pv.PagedViewDataSource = new PhasesPagedDataSource(dialogViewControllers);
+			_pv.ReloadPages();
 		}
 		
 		private void ShowErrorAlert ()
@@ -87,14 +89,11 @@ namespace Touch
 			alertView.Show();
 		}	
 		
-		
-		#region implemented abstract members of Touch.MainMenuBase
 		protected override UIImage CreateIconImage ()
 		{
 			return null;
 		}
 		
-		#endregion
 	}
 }
 
